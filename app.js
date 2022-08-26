@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //Handlebars
-//! Add .engine after exphbs
+// Add .engine after exphbs
 app.engine(
   ".hbs",
   exphbs.engine({
@@ -27,8 +28,12 @@ app.engine(
 );
 app.set("view engine", ".hbs");
 
+//Static Folder
+app.use(express.static(path.join(__dirname, "public")));
+
 // Routes
 app.use("/", require("./routes/index.js"));
+app.use("/dashboard", require("./routes/index.js"));
 
 const PORT = process.env.PORT | 8500;
 
