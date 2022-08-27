@@ -4,7 +4,9 @@ const router = express.Router();
 // @des     Login/Landing page
 // @route   GET /
 router.get("/", (req, res) => {
-  res.render("login");
+  res.render("login", {
+    layout: "login",
+  });
 });
 
 // @des     Dashboard
